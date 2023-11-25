@@ -286,7 +286,7 @@
 
 (d)  Camera intrinsics are known for all cameras.
 
-(e) Camera instrinsics for each camera are of the form
+(e) Camera intrinsics for each camera are of the form
 $
 \begin{bmatrix}
 f & 0 & 0 \\
@@ -296,7 +296,7 @@ f & 0 & 0 \\
 
 (f) The intrinsics across all cameras are known to be the same.
 
-(g) (2pts) The intrinsics across all cameras are known to be the same and the plane at infinity is known in the 3D reconstruction.
+(g) (4pts) The intrinsics across all cameras are known to be the same and the plane at infinity is known in the 3D reconstruction.
 
 \begin{tcolorbox}[fit,height=11cm, width=\textwidth, blank, borderline={0.5pt}{-2pt},halign=left, valign=center, nobeforeafter]
 
@@ -306,11 +306,11 @@ f & 0 & 0 \\
 
 \question \textbf{[4 pts]} To recover a metric rectification, we need to compute a Homography $H$ of the form $\begin{bmatrix}
 K_1 & \mathbf{0} \\
-\mathbf{v}^{\mathsf{T}} & 0 \\
+\mathbf{v}^{\mathsf{T}} & 1 \\
 \end{bmatrix}$. Defining $A=\begin{bmatrix}
 K_1 \\
 \mathbf{v}^{\mathsf{T}} \\
-\end{bmatrix}$, our strategy is to first determine $L=A^{\mathsf{T}}A$ using constraints on intrinsic matrices, and then recover A. Given $L$, outline the approach for computing $A$.
+\end{bmatrix}$, our strategy is to first determine $L=AA^{\mathsf{T}}$ using constraints on intrinsic matrices, and then recover A. Given $L$, outline the approach for computing $A$.
 
 \begin{tcolorbox}[fit,height=4.5cm, width=\textwidth, blank, borderline={0.5pt}{-2pt},halign=left, valign=center, nobeforeafter]
 
@@ -326,7 +326,7 @@ K_1 \\
 
 (c) Gauss-Newton optimization can be used for minimizing any cost function $\min_{\xv} C(\xv)$.
 
-(d) When performing bundle adjustment, we have an objective that is typically of the form of multiple re-projection errors measuring the difference between the observed and re-projected 2D coordinates: $L = \sum \| \xv^{obs}_{n} - \xv^{proj}_n \|$, where this optimization is iteratively performed via a algorithm like Gauss-Newton. Is the following statement true or false -- if we  add a (positive) weight associated with each error i.e. $L = w_n \sum \| \xv^{obs}_{n} - \xv^{proj}_n \|$, then we can no longer use Gauss-Newton to optimize this objective.
+(d) When performing bundle adjustment, we have an objective that is typically of the form of multiple re-projection errors measuring the difference between the observed and re-projected 2D coordinates: $L = \sum \| \xv^{obs}_{n} - \xv^{proj}_n \|$, where this optimization is iteratively performed via an algorithm like Gauss-Newton. Is the following statement true or false -- if we  add a (positive) weight associated with each error, i.e., $L = w_n \sum \| \xv^{obs}_{n} - \xv^{proj}_n \|$, then we can no longer use Gauss-Newton to optimize this objective.
 
 \begin{tcolorbox}[fit,height=5cm, width=\textwidth, blank, borderline={0.5pt}{-2pt},halign=left, valign=center, nobeforeafter]
 
@@ -341,7 +341,7 @@ K_1 \\
 
 (a) The trifocal tensor corresponding to the triplet of cameras $(P, P', P'')$ is the same as the trifocal tensor for $(PH, P'H, P''H)$, where $H$ is any invertible matrix.
 
-(b) Assuming $\Tv = [\Tv_1, \Tv_2, \Tv_3]$ is the trifocal tensor for $(P, P', P'')$, then $ \Tv_1^{\mathsf{T}}, \Tv_2^{\mathsf{T}}, \Tv_3^{\mathsf{T}}$ is the trifocal tensor for $(P, P'', P')$. 
+(b) Assuming $\Tv = [\Tv_1, \Tv_2, \Tv_3]$ is the trifocal tensor for $(P, P', P'')$, then $ [\Tv_1^{\mathsf{T}}, \Tv_2^{\mathsf{T}}, \Tv_3^{\mathsf{T}}]$ is the trifocal tensor for $(P, P'', P')$. 
 
 \begin{tcolorbox}[fit,height=2cm, width=\textwidth, blank, borderline={0.5pt}{-2pt},halign=left, valign=center, nobeforeafter]
 
